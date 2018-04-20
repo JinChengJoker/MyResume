@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>金成的个人简历</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/welcome.css">
     <script src="//at.alicdn.com/t/font_593214_25e07ns0t9t6s9k9.js"></script>
     <style type="text/css">
         .icon {
@@ -17,6 +18,7 @@
     </style>
 </head>
 <body>
+    <div id="loading" class="loading active"></div>
     <div id="topNavBar" class="topNavBar clearfix">
         <a class="logo" href="#">
             <span class="rs">RS</span><span class="card">card</span>
@@ -184,5 +186,11 @@
         </section>
     </main>
     <script src="./js/main.js"></script>
+    <script>
+        window.onload = function() {
+            var loading = document.getElementById('loading')
+            loading.classList.remove('active')
+        }
+    </script>
 </body>
 </html>

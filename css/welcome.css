@@ -1,0 +1,44 @@
+.loading {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: #fff;
+}
+.loading.active {
+    display: block;
+}
+.loading::before,
+.loading::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    background: #e8676b;
+    animation: Loading 1.5s linear infinite;
+}
+.loading::after {
+    animation-delay: .75s;
+}
+@keyframes Loading {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+    }
+}
