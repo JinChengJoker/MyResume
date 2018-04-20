@@ -20,12 +20,22 @@ portfolio3.onclick = function() {
 
 function listenNavBar() {
     let liTags = document.querySelectorAll('nav.navBar > ul > li')
+    let aTags = document.querySelectorAll('nav.navBar > ul > li > a')
     for(let i = 0; i < liTags.length; i++) {
         liTags[i].onmouseenter = function() {
             this.classList.add('active')
         }
         liTags[i].onmouseleave = function() {
             this.classList.remove('active')
+        }
+    }
+    for(let i = 0; i < aTags.length - 1; i++) {
+        aTags[i].onclick = function(e) {
+            e.preventDefault()
+            let href = this.getAttribute('href')
+            let element = document.querySelector(href)
+            let top = element.offsetTop
+            window.scrollTo(0 ,top - 80)
         }
     }
 }
