@@ -78,7 +78,8 @@ hr {
     background: #e06567;
     transition: all linear .2s;
 }
-.topNavBar > nav > ul > li:hover::after {
+.topNavBar > nav > ul > li:hover::after,
+.topNavBar > nav > ul > li.highlight::after {
     width: 100%;
 }
 .topNavBar > nav > ul > li > a {

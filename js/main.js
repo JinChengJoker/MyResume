@@ -29,6 +29,20 @@ function highlightNavBar() {
     } else {
         topNavBar.classList.remove('active')
     }
+    let tags = document.getElementsByClassName('fadeIn')
+    for(var i = 0; i < tags.length; i++) {
+        let bottom = tags[i].getBoundingClientRect().bottom
+        if(bottom > 120) {
+            break
+        }
+    }
+    let tagId = tags[i].id
+    let aTag = document.querySelector('a[href="#' + tagId + '"]')
+    let liTags = aTag.parentNode.parentNode.children
+    for(let i = 0; i < liTags.length; i++) {
+        liTags[i].classList.remove('highlight')
+    }
+    aTag.parentNode.classList.add('highlight')
 }
 
 function listenNavBar() {
