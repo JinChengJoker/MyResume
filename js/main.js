@@ -1,17 +1,12 @@
 window.onload = function() {
-    var loading = document.getElementById('loading')
-    loading.classList.remove('active')
+    detectionLoad()
+    highlightNavBar()
+    listenNavBar()
 }
 
 window.onscroll = function() {
-    if(window.scrollY > 0) {
-        topNavBar.classList.add('active')
-    } else {
-        topNavBar.classList.remove('active')
-    }
+    highlightNavBar()
 }
-
-listenNavBar()
 
 portfolio1.onclick = function() {
     filterBar.className = "filterBar filter1"
@@ -23,9 +18,22 @@ portfolio3.onclick = function() {
     filterBar.className = "filterBar filter3"
 }
 
+function detectionLoad() {
+    var loading = document.getElementById('loading')
+    loading.classList.remove('active')
+}
+
+function highlightNavBar() {
+    if(window.scrollY > 0) {
+        topNavBar.classList.add('active')
+    } else {
+        topNavBar.classList.remove('active')
+    }
+}
+
 function listenNavBar() {
     let liTags = document.querySelectorAll('nav.navBar > ul > li')
-    let aTags = document.querySelectorAll('nav.navBar > ul > li > a')
+    let aTags = document.querySelectorAll('nav.navBar > ul > li > a')    
     for(let i = 0; i < liTags.length; i++) {
         liTags[i].onmouseenter = function() {
             this.classList.add('active')
@@ -39,8 +47,23 @@ function listenNavBar() {
             e.preventDefault()
             let href = this.getAttribute('href')
             let element = document.querySelector(href)
-            let top = element.offsetTop
-            window.scrollTo(0 ,top - 80)
+            let currentTop = window.scrollY
+            let targetTop = element.offsetTop - 80
+            // tween
+            var position = { y: currentTop }
+            new TWEEN.Tween(position)
+                .to({ y: targetTop }, 500)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .onUpdate(function() { 
+                    window.scrollTo(0, position.y)
+                })
+                .start()
         }
+    }
+    // Setup the animation loop.
+    animate()
+    function animate() {
+        requestAnimationFrame(animate)
+        TWEEN.update()
     }
 }
