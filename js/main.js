@@ -1,3 +1,8 @@
+window.onload = function() {
+    var loading = document.getElementById('loading')
+    loading.classList.remove('active')
+}
+
 window.onscroll = function() {
     if(window.scrollY > 0) {
         topNavBar.classList.add('active')
