@@ -39,7 +39,13 @@ hr {
     width: 100%;
     padding: 20px;
     color: #b7b7b7;
+    transform: translateY(0);
+    opacity: 1;
     transition: all .5s;
+}
+.topNavBar.offset {
+    transform: translateY(-30px);
+    opacity: 0;
 }
 .topNavBar.active {
     color: #3d4451;

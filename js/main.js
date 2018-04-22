@@ -1,5 +1,6 @@
 window.onload = function() {
     detectionLoad()
+    navBarFadeIn()
     highlightNavBar()
     listenNavBar()
     listenFadeIn()
@@ -23,6 +24,13 @@ portfolio3.onclick = function() {
 function detectionLoad() {
     var loading = document.getElementById('loading')
     loading.classList.remove('active')
+}
+
+function navBarFadeIn() {
+    setTimeout(() => {
+        topNavBar.classList.remove('offset')
+    }, 300)
+    
 }
 
 function listenFadeIn() {
