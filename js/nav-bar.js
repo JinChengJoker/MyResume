@@ -19,7 +19,7 @@
         } else {
             topNavBar.classList.remove('active')
         }
-        let tags = document.getElementsByClassName('fadeIn')
+        let tags = document.getElementsByClassName('fadeinElement')
         for(var i = 0; i < tags.length; i++) {
             let bottom = tags[i].getBoundingClientRect().bottom
             if(bottom > 120) {

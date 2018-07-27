@@ -1,8 +1,9 @@
 (function() {
-    detectionLoad()
-
-    function detectionLoad() {
-        var loading = document.getElementById('loading')
-        loading.classList.remove('active')
+    var view = document.getElementById('loading')
+    var controller = {
+        removeClass: function(view) {
+            view.classList.remove('active')
+        }
     }
+    controller.removeClass(view)
 })()
