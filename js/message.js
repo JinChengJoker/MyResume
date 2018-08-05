@@ -22,3 +22,19 @@ messageForm.addEventListener('submit', function(e) {
         }
     )
 })
+
+// 批量获取
+var query = new AV.Query('Message')
+query.find().then(
+    function(messages) {
+        var messageList = document.getElementById('messageList')
+        messages.forEach((item) => {
+            var liTag = document.createElement('li')
+            liTag.innerText = `${item.attributes.name}：${item.attributes.content}`
+            messageList.appendChild(liTag)
+        })
+    },
+    function(err) {
+        console.log(err)
+    }
+)
