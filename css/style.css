@@ -247,11 +247,13 @@ hr {
 }
 
 .skills,
-.portfolio {
+.portfolio,
+.messages {
     margin-top: 70px;
 }
 .skills h2,
-.portfolio h2 {
+.portfolio h2,
+.messages h2 {
     font-size: 34px;
     text-align: center;
 }
