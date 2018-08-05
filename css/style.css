@@ -341,3 +341,17 @@ hr {
 .portfolio .show img {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
 }
+
+.messages > ul {
+    margin-top: 28px;
+}
+.messages > ul > li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.messages > form {
+    margin-top: 28px;
+}
+.messages > form > label {
+    margin-right: 28px;
+}
