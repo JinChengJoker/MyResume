@@ -1,40 +1,62 @@
-AV.init({
-    appId: 'RYJkWftaWUN54fdCkjJwIkQE-gzGzoHsz',
-    appKey: 'iywNJ1wVhO8qWzQzO3VRgzBG'
-})
-
-var Message = AV.Object.extend('Message')
-var message = new Message()
-
-var messageForm = document.getElementById('messageForm')
-messageForm.addEventListener('submit', function(e) {
-    e.preventDefault()
-    var name = messageForm.querySelector('input[name=name]').value
-    var content = messageForm.querySelector('input[name=content]').value
-    message.set('name', name)
-    message.set('content', content)
-    message.save().then(
-        function(res) {
-            alert('提交成功！')
+(function() {
+    var model = {
+        init: function() {
+            AV.init({
+                appId: 'RYJkWftaWUN54fdCkjJwIkQE-gzGzoHsz',
+                appKey: 'iywNJ1wVhO8qWzQzO3VRgzBG'
+            })
         },
-        function(err) {
-            alert('提交失败！')
+        messageList: function() {
+            var query = new AV.Query('Message')
+            return query.find()
         }
-    )
-})
-
-// 批量获取
-var query = new AV.Query('Message')
-query.find().then(
-    function(messages) {
-        var messageList = document.getElementById('messageList')
-        messages.forEach((item) => {
-            var liTag = document.createElement('li')
-            liTag.innerText = `${item.attributes.name}：${item.attributes.content}`
-            messageList.appendChild(liTag)
-        })
-    },
-    function(err) {
-        console.log(err)
     }
-)
+    var view = document.getElementById('messages')
+    var controller = {
+        bindEvent: function() {
+            var messageForm = view.querySelector('form')
+            messageForm.addEventListener('submit', function(e) {
+                e.preventDefault()
+                var name = messageForm.querySelector('input[name=name]').value
+                var content = messageForm.querySelector('input[name=content]').value
+                controller.pushMessage(name, content)
+                messageForm.querySelector('input[name=content]').value = ''
+            })
+        },
+        pushMessage: function(name, content) {
+            var Message = AV.Object.extend('Message')
+            var message = new Message()
+            message.set('name', name)
+            message.set('content', content)
+            message.save().then(
+                function(res) {
+                    var list = view.querySelector('ul')
+                    var liTag = document.createElement('li')
+                    liTag.innerText = `${name}：${content}`
+                    list.appendChild(liTag)
+                },
+                function(err) {
+                    alert('提交失败！')
+                }
+            )
+        },
+        renderMessageList: function() {
+            model.messageList().then(
+                function(res) {
+                    var list = view.querySelector('ul')
+                    res.forEach((item) => {
+                        var liTag = document.createElement('li')
+                        liTag.innerText = `${item.attributes.name}：${item.attributes.content}`
+                        list.appendChild(liTag)
+                    })
+                },
+                function(err) {
+                    console(err)
+                }
+            )
+        }
+    }
+    model.init()
+    controller.bindEvent()
+    controller.renderMessageList()
+})()
