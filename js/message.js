@@ -18,7 +18,13 @@
             messageForm.addEventListener('submit', function(e) {
                 e.preventDefault()
                 var name = messageForm.querySelector('input[name=name]').value
+                if(name.trim() === '') {
+                    return alert('敢问大名？')
+                }
                 var content = messageForm.querySelector('input[name=content]').value
+                if(content.trim() === '') {
+                    return alert('总要说点啥吧？')
+                }
                 controller.pushMessage(name, content)
                 messageForm.querySelector('input[name=content]').value = ''
             })
